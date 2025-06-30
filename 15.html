@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    #output {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+    .entry {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Registration Form</h2>
+
+  <form id="registrationForm">
+    <div class="form-group">
+      <label>Name:</label>
+      <input type="text" id="name" required>
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" id="email" required>
+    </div>
+    <div class="form-group">
+      <label>Phone:</label>
+      <input type="tel" id="phone" required>
+    </div>
+    <button type="submit">Submit</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </form>
+
+  <div id="output">
+    <h3>Submitted Data:</h3>
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const output = document.getElementById('output');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      // Basic validation
+      if (!name || !email || !phone) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Display data
+      const entry = document.createElement('div');
+      entry.classList.add('entry');
+      entry.innerHTML = `<strong>Name:</strong> ${name}<br>
+                         <strong>Email:</strong> ${email}<br>
+                         <strong>Phone:</strong> ${phone}`;
+      output.appendChild(entry);
+
+      // Reset form
+      form.reset();
+    });
+
+    function clearForm() {
+      form.reset();
+    }
+  </script>
+
+</body>
+</html>
